@@ -1,0 +1,4 @@
+SELECT "courierId", COUNT("inDelivery")
+FROM "Orders"
+WHERE "inDelivery" = true
+GROUP BY "courierId";
