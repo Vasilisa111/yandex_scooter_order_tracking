@@ -1,5 +1,4 @@
-SELECT c.login, COUNT(o."inDelivery") AS orders_for_delivery
+SELECT c.login, SUM(CASE WHEN o."inDelivery" = true THEN 1 ELSE 0 END) AS orders_for_delivery
 FROM "Couriers" AS c
-JOIN  "Orders" AS o ON c.id = o."courierId"
-WHERE "inDelivery" = true
+LEFT JOIN  "Orders" AS o ON c.id = o."courierId"
 GROUP BY c.login;
